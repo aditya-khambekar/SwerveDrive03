@@ -3,6 +3,7 @@ package frc.robot.subsystems;
 import com.ctre.phoenix6.hardware.CANcoder;
 import com.ctre.phoenix6.hardware.TalonFX;
 
+import edu.wpi.first.math.controller.PIDController;
 import edu.wpi.first.math.controller.ProfiledPIDController;
 import edu.wpi.first.math.geometry.Rotation2d;
 import edu.wpi.first.math.kinematics.SwerveModuleState;
@@ -16,8 +17,12 @@ public class SwerveDriveModule {
     private double rotationSetpoint = 0.0;
     private double speed = 0.0;
 
+    private double encoderOffset = 0.0;
+
+    private boolean inverted = false;
+
     ProfiledPIDController PID = new ProfiledPIDController(
-        1.0, 
+        0.01, 
         0.0, 
         0.0, 
         new TrapezoidProfile.Constraints(0.8, 0.5)
@@ -32,7 +37,7 @@ public class SwerveDriveModule {
     }
 
     public double getPosition(){
-        return Encoder.getAbsolutePosition().getValue();
+        return inverted ? -1 : 1 * (Encoder.getAbsolutePosition().getValue() - encoderOffset);
     }
 
     public void periodic(){
@@ -70,5 +75,15 @@ public class SwerveDriveModule {
 
     public static double toWheelVelocity(double rotationsPerSecond){
         return rotationsPerSecond/512.0;
+    }
+
+    public void setInverted(boolean b){
+        inverted = b;
+        WheelMotor.setInverted(b);
+        ControllerMotor.setInverted(b);
+    }
+
+    public ProfiledPIDController getPID(){
+        return PID;
     }
 }

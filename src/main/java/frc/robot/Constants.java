@@ -1,3 +1,4 @@
+package frc.robot;
 public class Constants {
     public static final int WHEEL1 = 1;
     public static final int CONTROLLER1 = 2;
@@ -11,4 +12,6 @@ public class Constants {
     public static final int WHEEL4 = 7;
     public static final int CONTROLLER4 = 8;
     public static final int ENCODER4 = 12;
+
+    public static final double DEADZONE_VALUE = 0.08;
 }
