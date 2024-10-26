@@ -21,6 +21,7 @@ public class SwerveDriveModule {
 
     private boolean inverted = false;
 
+    //TODO: tune PID
     ProfiledPIDController PID = new ProfiledPIDController(
         0.01, 
         0.0, 
@@ -85,5 +86,9 @@ public class SwerveDriveModule {
 
     public ProfiledPIDController getPID(){
         return PID;
+    }
+
+    public void setEncoderOffset(double offsetRotations){
+        encoderOffset = offsetRotations;
     }
 }

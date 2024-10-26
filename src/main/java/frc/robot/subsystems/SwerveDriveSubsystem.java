@@ -34,6 +34,16 @@ public class SwerveDriveSubsystem extends SubsystemBase{
             new Translation2d(-0.3048, 0.3048),
             new Translation2d(-0.3048, -0.3048)
         );
+
+        modules[0][1].setInverted(true);
+        modules[1][1].setInverted(true);
+
+        //TODO: add offsets
+        modules[0][0].setEncoderOffset(0);
+        modules[0][1].setEncoderOffset(0);
+        modules[1][0].setEncoderOffset(0);
+        modules[1][1].setEncoderOffset(0);
+
     }
 
     public void setChassisSpeeds(ChassisSpeeds s){
