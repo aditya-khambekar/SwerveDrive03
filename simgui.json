@@ -1,0 +1,39 @@
+{
+  "NTProvider": {
+    "types": {
+      "/FMSInfo": "FMSInfo",
+      "/SmartDashboard/BackLeft": "Mechanism2d",
+      "/SmartDashboard/BackRight": "Mechanism2d",
+      "/SmartDashboard/FrontLeft": "Mechanism2d",
+      "/SmartDashboard/FrontRight": "Mechanism2d"
+    },
+    "windows": {
+      "/SmartDashboard/BackLeft": {
+        "window": {
+          "visible": true
+        }
+      },
+      "/SmartDashboard/BackRight": {
+        "window": {
+          "visible": true
+        }
+      },
+      "/SmartDashboard/FrontLeft": {
+        "window": {
+          "visible": true
+        }
+      },
+      "/SmartDashboard/FrontRight": {
+        "window": {
+          "visible": true
+        }
+      }
+    }
+  },
+  "NetworkTables Info": {
+    "Clients": {
+      "open": true
+    },
+    "visible": true
+  }
+}
