@@ -16,13 +16,18 @@ public class SwerveDriveCommand extends Command{
         this.xSupplier = xSupplier;
         this.ySupplier = ySupplier;
         this.angularRotationSupplier = angularRotationSupplier;
+        addRequirements(SwerveDriveSubsystem.getInstance());
     }
 
 
     @Override
     public void initialize(){
-        subsystem.setChassisSpeeds(new ChassisSpeeds(xSupplier.getAsDouble(), ySupplier.getAsDouble(), angularRotationSupplier.getAsDouble()));
+        subsystem.stop();
     }
 
+    @Override
+    public void execute(){
+        subsystem.setChassisSpeeds(new ChassisSpeeds(xSupplier.getAsDouble(), ySupplier.getAsDouble(), angularRotationSupplier.getAsDouble()));
+    }
 
 }

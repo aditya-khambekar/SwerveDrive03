@@ -17,7 +17,10 @@ public class Robot extends TimedRobot
     
     
     @Override
-    public void robotInit() {}
+    public void robotInit() {
+        System.out.println("Robot");
+        robotContainer = new RobotContainer();
+    }
     
     
     @Override
@@ -90,4 +93,7 @@ public class Robot extends TimedRobot
     
     @Override
     public void testExit() {}
+
+
+
 }

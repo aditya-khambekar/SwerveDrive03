@@ -11,7 +11,6 @@ import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.Commands;
 import frc.robot.commands.SwerveDriveCommand;
 import frc.robot.oi.OI;
-import frc.robot.subsystems.SwerveDriveModule;
 import frc.robot.subsystems.SwerveDriveSubsystem;
 
 
@@ -19,9 +18,11 @@ import frc.robot.subsystems.SwerveDriveSubsystem;
 public class RobotContainer
 {
 
+    SwerveDriveSubsystem swerveDriveSubsystem = SwerveDriveSubsystem.getInstance();
     OI oi = new OI();
     public RobotContainer()
     {
+        System.out.println("Robot Container Init");
         configureBindings();
     }
     
@@ -35,8 +36,8 @@ public class RobotContainer
                     @Override
                     public double getAsDouble() {
                         var x = oi.driverController().getAxis(OI.Axes.RIGHT_STICK_X);
-                        var rpm = 512*x;
-                        return SwerveDriveModule.toWheelMetersPerSecond(rpm);
+                        //System.out.println("X: "+x);
+                        return x;
                     }
                     
                 }, 
@@ -46,8 +47,8 @@ public class RobotContainer
                     @Override
                     public double getAsDouble() {
                         var y = oi.driverController().getAxis(OI.Axes.RIGHT_STICK_Y);
-                        var rpm = 512*y;
-                        return SwerveDriveModule.toWheelMetersPerSecond(rpm);
+                        //System.out.println("Y: "+y);
+                        return y;
                     }
                     
                 }, 
@@ -57,15 +58,20 @@ public class RobotContainer
                     @Override
                     public double getAsDouble() {
                         var x = oi.driverController().getAxis(OI.Axes.LEFT_STICK_X);
-                        var y = oi.driverController().getAxis(OI.Axes.LEFT_STICK_Y);
-
-                        //this gets the angle from 0 to 2pi and subtracts pi to make it range from pi to negative pi
-                        var angle = Math.atan2(y,x)-Math.PI;
+                        
+                        var angle = -Math.PI*x;
+                        //System.out.println("rotation = "+angle);
                         return angle;
                     }
                     
                 })
         );
+        oi.driverController().getButton(OI.Buttons.A_BUTTON).whileTrue(new Command(){
+            @Override
+            public void execute() {
+                System.out.println("A Button");
+            }
+        });
     }
     
     

@@ -14,4 +14,7 @@ public class Constants {
     public static final int ENCODER4 = 12;
 
     public static final double DEADZONE_VALUE = 0.08;
+
+    public static final double WHEELBASE_M = 0.308;
+    public static final double TRACKWIDTH_M = 0.308;
 }
